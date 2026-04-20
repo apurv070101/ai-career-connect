@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Progress } from "@/components/ui/progress";
 import { Upload, FileText, CheckCircle, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
+import { buildApiUrl } from "@/lib/api";
 
 const ResumeUpload = () => {
     const navigate = useNavigate();
@@ -99,7 +100,7 @@ const ResumeUpload = () => {
             const formData = new FormData();
             formData.append("file", file);
 
-            const response = await fetch("http://localhost:8000/analyze-resume", {
+            const response = await fetch(buildApiUrl("/analyze-resume"), {
                 method: "POST",
                 body: formData,
             });

@@ -18,6 +18,7 @@ import random
 from enum import Enum
 from email.message import EmailMessage
 from pathlib import Path
+import json
 import anthropic
 import openai
 import requests
@@ -46,6 +47,18 @@ def load_local_env_file():
 
 load_local_env_file()
 
+
+def get_cors_origins() -> List[str]:
+    configured = os.getenv("CORS_ORIGINS", "").strip()
+    if configured:
+        return [origin.strip() for origin in configured.split(",") if origin.strip()]
+    return [
+        "http://localhost:8080",
+        "http://127.0.0.1:8080",
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ]
+
 # Initialize FastAPI app
 app = FastAPI(
     title="AI Resume Analyzer",
@@ -56,7 +69,7 @@ app = FastAPI(
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Configure appropriately for production
+    allow_origins=get_cors_origins(),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -188,6 +201,11 @@ def get_firebase_app():
     try:
         return firebase_admin.get_app()
     except ValueError:
+        service_account_json = os.getenv("FIREBASE_SERVICE_ACCOUNT_JSON", "").strip()
+        if service_account_json:
+            cred = credentials.Certificate(json.loads(service_account_json))
+            return firebase_admin.initialize_app(cred)
+
         service_account_path = get_firebase_service_account_path()
         if not service_account_path.exists():
             raise HTTPException(status_code=500, detail="Firebase service account file not found")
@@ -1248,4 +1266,4 @@ async def send_otp_email(payload: SendOtpEmailRequest):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=int(os.getenv("PORT", "8000")))

@@ -10,6 +10,7 @@ import {
   verifyTotpCode,
 } from "@/lib/security";
 import { authFetch, getCurrentUser } from "@/lib/auth";
+import { buildApiUrl } from "@/lib/api";
 
 export interface Job {
   id: number | string;
@@ -99,9 +100,9 @@ export type RegisterResult =
 const SECURE_USERS_KEY = "secure_users_v1";
 const LEGACY_USERS_KEY = "users";
 const SESSION_KEY = "secure_session_v1";
-const OTP_EMAIL_API_URL = "http://localhost:8000/send-otp-email";
+const OTP_EMAIL_API_URL = buildApiUrl("/send-otp-email");
 const AUTH_SESSION_KEY = "auth_session_v1";
-const FIREBASE_DB_API_BASE_URL = "http://localhost:8000/db";
+const FIREBASE_DB_API_BASE_URL = buildApiUrl("/db");
 const RECRUITER_JOBS_CACHE_PREFIX = "recruiter_jobs_cache:";
 const RECRUITER_STATS_CACHE_PREFIX = "recruiter_stats_cache:";
 const SHORTLISTED_CANDIDATES_CACHE_PREFIX = "shortlisted_candidates_cache:";

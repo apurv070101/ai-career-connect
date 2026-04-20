@@ -1,3 +1,5 @@
+import { buildApiUrl } from "@/lib/api";
+
 export type UserRole = "candidate" | "recruiter";
 
 export interface AuthUser {
@@ -22,7 +24,7 @@ interface RegisterRequestInput {
   company?: string;
 }
 
-const AUTH_API_BASE_URL = "http://localhost:8000/auth";
+const AUTH_API_BASE_URL = buildApiUrl("/auth");
 const AUTH_SESSION_KEY = "auth_session_v1";
 
 const normalizeEmail = (email: string) => email.trim().toLowerCase();

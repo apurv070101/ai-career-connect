@@ -1,66 +1,89 @@
-# SkillBridge AI (AI Career Connect)
+# SkillBridge AI
 
-An AI-powered sustainable hiring platform connecting talent with opportunity through intelligent resume analysis and match-making.
+SkillBridge AI is a hiring platform with:
 
-## 🚀 Key Features
+- a React + Vite frontend
+- a FastAPI backend
+- Firebase-backed authentication
+- candidate resume analysis and recruiter dashboards
 
-### 1. AI Resume Analysis
--   **Skill Gap Analysis**: Automatically detects missing critical skills for your target role.
--   **Course Recommendations**: Suggests specific courses to bridge identified skill gaps.
--   **Local AI Engine**: Powered by a custom local NLP engine (no external API costs).
-
-### 2. Recruiter Dashboard
--   **Shortlisted Candidates**: Automatically filters and highlights top candidates (Match Score > 80%).
--   **Job Posting**: Recruiters can create and manage job listings dynamically.
--   **Applicant Tracking**: View stats on active jobs and applications.
-f
-### 3. Authentication & Roles
--   **Dual Roles**: Separate flows for **Candidates** and **Recruiters**.
--   **Firebase-backed Auth**: Registration uses email OTP verification and login uses Firebase email/password authentication.
-
-## 🛠️ Tech Stack
--   **Frontend**: React, TypeScript, Vite, Tailwind CSS, Shadcn UI
--   **Backend (AI)**: Python (FastAPI/Flask equivalent logic), Local NLP
--   **State Management**: React Query, LocalStorage (Mock DB)
-
-## 🏃‍♂️ How to Run
+## Local Setup
 
 ### Frontend
-1.  Install dependencies:
-    ```bash
-    npm install
-    ```
-2.  Start the development server:
-    ```bash
-    npm run dev
-    ```
 
-### Backend (AI Engine)
-1.  Navigate to `model/` directory.
-2.  Install Python dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-3.  Create `model/.env` and set at least:
-    ```bash
-    FIREBASE_WEB_API_KEY=your_firebase_web_api_key
-    FIREBASE_SERVICE_ACCOUNT_PATH=ai-career-connect-firebase-adminsdk.json
-    ```
-4.  Optional for real email OTP delivery:
-    ```bash
-    SMTP_HOST=...
-    SMTP_PORT=587
-    SMTP_USERNAME=...
-    SMTP_PASSWORD=...
-    SMTP_FROM=...
-    ```
-5.  Run the API server:
-    ```bash
-    python main.py
-    ```
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Create `.env` from `.env.example`:
+   ```bash
+   VITE_API_BASE_URL=http://localhost:8000
+   ```
+3. Start the frontend:
+   ```bash
+   npm run dev
+   ```
 
-## 📸 Screenshots
-(Add screenshots of Dashboard and Analysis here)
+### Backend
 
----
-*Built for the Future of Work.*
+1. Go to the backend folder:
+   ```bash
+   cd model
+   ```
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Create `model/.env` from `model/.env.example`
+4. Start the API:
+   ```bash
+   python main.py
+   ```
+
+## Render Deployment
+
+This repo includes [render.yaml](/C:/Users/Apurv/Videos/ai-career-connect/ai-career-connect/render.yaml) for deploying:
+
+- `ai-career-connect-api` as a Python web service
+- `ai-career-connect-web` as a static site
+
+### Backend env vars
+
+Set these on the Render backend service:
+
+- `FIREBASE_WEB_API_KEY`
+- `FIREBASE_SERVICE_ACCOUNT_JSON` or `FIREBASE_SERVICE_ACCOUNT_PATH`
+- `CORS_ORIGINS`
+- `SMTP_HOST`
+- `SMTP_PORT`
+- `SMTP_USERNAME`
+- `SMTP_PASSWORD`
+- `SMTP_FROM`
+- `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`, or `GEMINI_API_KEY` if you use hosted AI providers
+
+### Frontend env vars
+
+Set this on the Render static site:
+
+- `VITE_API_BASE_URL`
+
+Example:
+```bash
+VITE_API_BASE_URL=https://ai-career-connect-api.onrender.com
+```
+
+### Production recommendations
+
+- Set `CORS_ORIGINS` to your frontend Render URL, for example:
+  ```bash
+  CORS_ORIGINS=https://ai-career-connect-web.onrender.com
+  ```
+- Prefer `FIREBASE_SERVICE_ACCOUNT_JSON` on Render so you do not need to upload a credential file.
+- After the backend is live, update the frontend `VITE_API_BASE_URL` to point to it.
+
+## Deployment Notes
+
+- The frontend now reads the API base URL from `VITE_API_BASE_URL` instead of hardcoding `localhost`.
+- The FastAPI app now supports Render’s `PORT` environment variable.
+- Backend CORS is controlled with `CORS_ORIGINS`.
+- Firebase admin credentials can now be provided through `FIREBASE_SERVICE_ACCOUNT_JSON`.
