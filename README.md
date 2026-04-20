@@ -1,73 +1,66 @@
-# Welcome to your Lovable project
+# SkillBridge AI (AI Career Connect)
 
-## Project info
+An AI-powered sustainable hiring platform connecting talent with opportunity through intelligent resume analysis and match-making.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+## 🚀 Key Features
 
-## How can I edit this code?
+### 1. AI Resume Analysis
+-   **Skill Gap Analysis**: Automatically detects missing critical skills for your target role.
+-   **Course Recommendations**: Suggests specific courses to bridge identified skill gaps.
+-   **Local AI Engine**: Powered by a custom local NLP engine (no external API costs).
 
-There are several ways of editing your application.
+### 2. Recruiter Dashboard
+-   **Shortlisted Candidates**: Automatically filters and highlights top candidates (Match Score > 80%).
+-   **Job Posting**: Recruiters can create and manage job listings dynamically.
+-   **Applicant Tracking**: View stats on active jobs and applications.
+f
+### 3. Authentication & Roles
+-   **Dual Roles**: Separate flows for **Candidates** and **Recruiters**.
+-   **Firebase-backed Auth**: Registration uses email OTP verification and login uses Firebase email/password authentication.
 
-**Use Lovable**
+## 🛠️ Tech Stack
+-   **Frontend**: React, TypeScript, Vite, Tailwind CSS, Shadcn UI
+-   **Backend (AI)**: Python (FastAPI/Flask equivalent logic), Local NLP
+-   **State Management**: React Query, LocalStorage (Mock DB)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+## 🏃‍♂️ How to Run
 
-Changes made via Lovable will be committed automatically to this repo.
+### Frontend
+1.  Install dependencies:
+    ```bash
+    npm install
+    ```
+2.  Start the development server:
+    ```bash
+    npm run dev
+    ```
 
-**Use your preferred IDE**
+### Backend (AI Engine)
+1.  Navigate to `model/` directory.
+2.  Install Python dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+3.  Create `model/.env` and set at least:
+    ```bash
+    FIREBASE_WEB_API_KEY=your_firebase_web_api_key
+    FIREBASE_SERVICE_ACCOUNT_PATH=ai-career-connect-firebase-adminsdk.json
+    ```
+4.  Optional for real email OTP delivery:
+    ```bash
+    SMTP_HOST=...
+    SMTP_PORT=587
+    SMTP_USERNAME=...
+    SMTP_PASSWORD=...
+    SMTP_FROM=...
+    ```
+5.  Run the API server:
+    ```bash
+    python main.py
+    ```
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 📸 Screenshots
+(Add screenshots of Dashboard and Analysis here)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+---
+*Built for the Future of Work.*

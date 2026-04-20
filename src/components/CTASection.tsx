@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { ArrowRight, Handshake } from "lucide-react";
 
 const CTASection = () => {
@@ -22,14 +23,18 @@ const CTASection = () => {
               Be part of the movement that's transforming how IT talent meets opportunity — sustainably.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <button className="group flex items-center gap-2 px-8 py-3.5 rounded-lg bg-gradient-green text-primary-foreground font-semibold transition-all hover:shadow-lg glow-green">
-                Get Started
-                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="flex items-center gap-2 px-8 py-3.5 rounded-lg border border-border bg-card/50 text-foreground font-semibold hover:border-primary/40 transition-all">
-                <Handshake className="h-4 w-4 text-primary" />
-                Partner With Us
-              </button>
+              <Link to="/upload-resume">
+                <button className="group flex items-center gap-2 px-8 py-3.5 rounded-lg bg-gradient-green text-primary-foreground font-semibold transition-all hover:shadow-lg glow-green">
+                  Get Started
+                  <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </button>
+              </Link>
+              <Link to="/register">
+                <button className="flex items-center gap-2 px-8 py-3.5 rounded-lg border border-border bg-card/50 text-foreground font-semibold hover:border-primary/40 transition-all">
+                  <Handshake className="h-4 w-4 text-primary" />
+                  Partner With Us
+                </button>
+              </Link>
             </div>
           </div>
         </motion.div>

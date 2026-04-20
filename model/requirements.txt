@@ -1,0 +1,17 @@
+# Core framework (Python 3.14 compatible ranges)
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+pydantic[email]>=2.11.0
+
+# PDF Processing
+pypdf>=4.3.1
+
+# LLM Providers
+anthropic>=0.34.0
+openai>=1.40.0
+google-generativeai>=0.8.3
+firebase-admin>=7.4.0
+
+# Additional utilities
+python-multipart>=0.0.12
+requests>=2.31.0

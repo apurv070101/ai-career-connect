@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { Upload, Briefcase, ArrowRight } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
@@ -37,15 +38,19 @@ const HeroSection = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="group flex items-center gap-2 px-8 py-3.5 rounded-lg bg-gradient-green text-primary-foreground font-semibold text-base transition-all hover:shadow-lg glow-green">
-              <Upload className="h-4 w-4" />
-              Upload Resume
-              <ArrowRight className="h-4 w-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
-            </button>
-            <button className="flex items-center gap-2 px-8 py-3.5 rounded-lg border border-border bg-card/50 text-foreground font-semibold text-base hover:border-primary/40 hover:bg-card transition-all">
-              <Briefcase className="h-4 w-4 text-secondary" />
-              Post a Job
-            </button>
+            <Link to="/upload-resume">
+              <button className="group flex items-center gap-2 px-8 py-3.5 rounded-lg bg-gradient-green text-primary-foreground font-semibold text-base transition-all hover:shadow-lg glow-green">
+                <Upload className="h-4 w-4" />
+                Upload Resume
+                <ArrowRight className="h-4 w-4 opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+              </button>
+            </Link>
+            <Link to={localStorage.getItem("userRole") === "recruiter" ? "/post-job" : "/register"}>
+              <button className="flex items-center gap-2 px-8 py-3.5 rounded-lg border border-border bg-card/50 text-foreground font-semibold text-base hover:border-primary/40 hover:bg-card transition-all">
+                <Briefcase className="h-4 w-4 text-secondary" />
+                Post a Job
+              </button>
+            </Link>
           </div>
         </motion.div>
 
